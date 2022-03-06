@@ -12,7 +12,7 @@ export class User {
     fullname: string;
 
     @Prop()
-    age: string;
+    age: number;
 
     @Prop()
     nickname: string;
@@ -27,7 +27,7 @@ export class User {
     @Prop()
     available: boolean;
 
-    @Prop({type: [Types.ObjectId], ref: Message.name})
+    @Prop({type: [Types.ObjectId], ref: Message.name, default: []})
     messages: Message[];
 
     @Prop({type: Types.ObjectId, ref: Notification.name})
