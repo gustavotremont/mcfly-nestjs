@@ -12,10 +12,10 @@ export class Message {
     sendOn: Date;
 
     @Prop()
-    originUser: string;
+    from: string;
 
     @Prop()
-    destinyUser: string;
+    to: string;
 }
 
 export const MessageSchema = SchemaFactory.createForClass(Message);
