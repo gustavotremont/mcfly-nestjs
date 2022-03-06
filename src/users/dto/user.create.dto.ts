@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateUserDto {
     @IsString()
@@ -24,4 +24,11 @@ export class CreateUserDto {
     @IsBoolean()
     @IsNotEmpty()
     readonly available: boolean;
+
+    @IsArray()
+    readonly messages: [];
+
+    @IsString()
+    @IsNotEmpty()
+    notifications: string;
 }
