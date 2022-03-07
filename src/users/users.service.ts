@@ -37,9 +37,17 @@ export class UsersService {
         const existingUser = await this.userModel.findOne({email}).exec()
 
         if(existingUser) {
-            existingUser.available ? false : true
+            existingUser.available = existingUser.available ? false : true
             return await existingUser.save()
         } else {
+            throw new NotFoundException(`user not found with this email: ${email}`);
+        }
+    }
+
+    public async addNewMessage( email: string, messageId: string ): Promise<void> {
+        const existingUser = await this.userModel.findByIdAndUpdate(email, { $push: {messages: messageId} } )
+
+        if(!existingUser) {
             throw new NotFoundException(`user not found with this email: ${email}`);
         }
     }

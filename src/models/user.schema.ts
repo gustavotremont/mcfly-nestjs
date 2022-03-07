@@ -24,7 +24,7 @@ export class User {
     @Exclude()
     password: string;
 
-    @Prop()
+    @Prop({default: true})
     available: boolean;
 
     @Prop({type: [Types.ObjectId], ref: Message.name, default: []})
