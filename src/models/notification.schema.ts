@@ -6,7 +6,7 @@ export type NotificationDocument = Notification & Document;
 
 @Schema()
 export class Notification {
-    @Prop({type: [Types.ObjectId], ref: Message.name})
+    @Prop({type: [Types.ObjectId], ref: Message.name, default: []})
     messages: Message[];
 }
 
