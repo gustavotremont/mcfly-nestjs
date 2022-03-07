@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Post, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { UsersService } from 'src/users/users.service';
 import { CreateMessageDto } from './dto/message.create.dto';
@@ -12,7 +13,9 @@ export class MessagesController {
         private notificationService: NotificationsService
     ) {}
 
+
     @Post()
+    @UseGuards(AuthGuard('jwt'))
     public async addCustomer(
         @Res() res,
         @Body() createMessageDto: CreateMessageDto,
@@ -44,6 +47,7 @@ export class MessagesController {
     }
 
     @Get('/:email')
+    @UseGuards(AuthGuard('jwt'))
     public async getMessagesByUser(
         @Res() res,
         @Param('email') email: string

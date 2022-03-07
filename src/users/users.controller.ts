@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { CreateUserDto } from './dto/user.create.dto';
 import { UpdateUserDto } from './dto/user.update.dto';
@@ -12,6 +13,7 @@ export class UsersController {
     ) {}
 
     @Get('/:email')
+    @UseGuards(AuthGuard('jwt'))
     public async getUserByEmail(
         @Res() res,
         @Param('email') email: string
@@ -24,6 +26,7 @@ export class UsersController {
     }
 
     @Get()
+    @UseGuards(AuthGuard('jwt'))
     public async getAllActiveUsers(
         @Res() res
     ) {
@@ -63,6 +66,7 @@ export class UsersController {
     }
     
     @Put('/:email')
+    @UseGuards(AuthGuard('jwt'))
     public async updateUser(
         @Res() res,
         @Param('email') email: string,
@@ -90,6 +94,7 @@ export class UsersController {
     }
 
     @Patch('/:email')
+    @UseGuards(AuthGuard('jwt'))
     public async updateAviability(
         @Res() res,
         @Param('email') email: string,

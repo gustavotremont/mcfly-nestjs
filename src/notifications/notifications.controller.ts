@@ -1,4 +1,5 @@
-import { Controller, Get, HttpStatus, NotFoundException, Param, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, NotFoundException, Param, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from 'src/users/users.service';
 
 @Controller('notifications')
@@ -9,6 +10,7 @@ export class NotificationsController {
 
     
     @Get('/:email')
+    @UseGuards(AuthGuard('jwt'))
     public async getUserByEmail(
         @Res() res,
         @Param('email') email: string
