@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Exclude } from "class-transformer";
+import { Exclude, Transform } from "class-transformer";
 import { Document, Types } from 'mongoose'
 import { Message } from "./message.schema";
 import { Notification } from "./notification.schema";
@@ -8,8 +8,8 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-    @Prop()
-    _id: Types.ObjectId;
+    @Transform(({ value }) => value.toString())
+    _id: string;
 
     @Prop()
     fullname: string;

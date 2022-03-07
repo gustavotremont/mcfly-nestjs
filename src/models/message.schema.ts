@@ -1,17 +1,18 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Transform } from "class-transformer";
 import { Document, Types } from 'mongoose'
 
 export type MessageDocument = Message & Document;
 
 @Schema()
 export class Message {
-    @Prop()
-    _id: Types.ObjectId;
+    @Transform(({ value }) => value.toString())
+    _id: string;
 
     @Prop()
     text: string;
 
-    @Prop({ required: true })
+    @Prop({ default: Date })
     sendOn: Date;
 
     @Prop()
