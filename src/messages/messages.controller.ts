@@ -19,18 +19,16 @@ export class MessagesController {
     ) {
         try {
             const userToSend = await this.usersService.findByEmail(createMessageDto.to) 
-
             if(!userToSend.available) {
                 return res.status(HttpStatus.BAD_REQUEST).json({
                     message: 'Error: The user is not active to send messages',
                     status: 400,
                 });
             } else {
-                await this.notificationService.addNewNotification(userToSend._id.toString(), createMessageDto.text);
-
                 const newMessage = await this.messageService.create(createMessageDto);
-
-                await this.usersService.addNewMessage(newMessage.from, newMessage._id.toString())
+                
+                await this.notificationService.addNewNotification(userToSend.notifications.toString(), newMessage._id);
+                await this.usersService.addNewMessage(newMessage.from, newMessage._id)
 
                 return res.status(HttpStatus.OK).json({
                     message: 'Message has been sended successfully',
@@ -50,10 +48,11 @@ export class MessagesController {
         @Res() res,
         @Param('email') email: string
     ) {
-        const user = await this.usersService.findByEmail(email)
+        const user = await this.usersService.findMessagesByEmail(email)
         if (!user) {
             throw new NotFoundException('User does not exist!');
         }
-        return res.status(HttpStatus.OK).json(user.messages);
+        const messages = user.messages.map(element => { return {message: element.text, to: element.to, send: element.sendOn} })
+        return res.status(HttpStatus.OK).json(messages);
     }
 }
