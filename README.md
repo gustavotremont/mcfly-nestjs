@@ -2,6 +2,8 @@
 
 Prueba Tecnica Propuesta por Kubide
 
+API Rest de mensajeria de usuarios, para la gestión de sus datos, mensajes y notificaciones.
+
 ## Instalación
 
 1.- Clonar el repositorio
