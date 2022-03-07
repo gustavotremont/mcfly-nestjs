@@ -32,7 +32,7 @@ export class UsersController {
     }
 
     @Post()
-    public async addCustomer(
+    public async createUser(
         @Res() res,
         @Body() createUserDto: CreateUserDto,
     ) {
@@ -47,11 +47,11 @@ export class UsersController {
 
             } else {
                 const notificationId = await this.notificationService.create()
-                createUserDto.notifications = notificationId.toString()
-                const customer = await this.usersService.create(createUserDto);
+                createUserDto.notifications = notificationId
+                const user = await this.usersService.create(createUserDto);
                 return res.status(HttpStatus.OK).json({
                     message: 'User has been created successfully',
-                    customer,
+                    user,
                 });
             }
         } catch (err) {

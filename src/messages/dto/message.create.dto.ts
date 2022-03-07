@@ -1,6 +1,6 @@
 import { IsArray, IsBoolean, IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class CreateUserDto {
+export class CreateMessageDto {
     @IsString()
     @IsNotEmpty()
     readonly text: string;
