@@ -1,9 +1,10 @@
-import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Patch, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { CreateUserDto } from './dto/user.create.dto';
 import { UpdateUserDto } from './dto/user.update.dto';
 import { UsersService } from './users.service';
+import { Request } from 'express';
 
 @Controller('users')
 export class UsersController {
