@@ -31,8 +31,8 @@ $ npm run start
 ahora pueden probar la api desde cualquier cliente de peticiones hhtp (Postman, thunderclient, Advanced REST Client)
 en la carpeta 'endpoints' habrá una collección de endpoints en postman para su prueba rapida.
 
-## Stay in touch
+## Perfil
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Autor - Gustavo Tremont
+- Linkedin - [linkedin.com/in/gustavotremont/](https://www.linkedin.com/in/gustavotremont/)
+- Github - [gustavotremont](https://github.com/gustavotremont)
