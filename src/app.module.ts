@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { MessagesModule } from './messages/messages.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { MessagesModule } from './messages/messages.module';
     MongooseModule.forRoot(process.env.BBDD_URI),
     UsersModule,
     NotificationsModule,
-    MessagesModule
+    MessagesModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
